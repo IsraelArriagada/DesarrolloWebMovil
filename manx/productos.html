@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo — Craft & Beer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://unpkg.com/@tailwindcss/browser@4.3.3/dist/index.global.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-display: 'Fredoka', system-ui, sans-serif;
+      --ambar: #FFB100;
+      --ambar-suave: #FFE29A;
+      --naranja: #FF6B4A;
+      --teal: #1FAE93;
+      --purpura: #8B4FE3;
+      --tinta: #2B1B12;
+      --tinta-suave: #7A6A5D;
+      --crema: #FFF8EA;
+    }
+    body { background-color: var(--crema); color: var(--tinta); font-family: 'Nunito', system-ui, sans-serif; }
+    #carritoPanel.abierto { transform: translateX(0); }
+  </style>
+</head>
+<body>
+
+  <!-- Sprite de íconos (reemplaza los emojis) -->
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" focusable="false">
+    <defs>
+      <symbol id="icon-mug" viewBox="0 0 24 24">
+        <path d="M5 7h10v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7Z"></path>
+        <path d="M15 9h2.5a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H15"></path>
+        <path d="M7 7V5.5A1.5 1.5 0 0 1 8.5 4H12"></path>
+        <line x1="6.5" y1="10" x2="13.5" y2="10"></line>
+      </symbol>
+      <symbol id="icon-truck" viewBox="0 0 24 24">
+        <path d="M2 7h11v9H2z"></path>
+        <path d="M13 10h4l3 3v3h-7z"></path>
+        <circle cx="6" cy="18" r="1.6"></circle>
+        <circle cx="17" cy="18" r="1.6"></circle>
+      </symbol>
+      <symbol id="icon-recycle" viewBox="0 0 24 24">
+        <path d="M7 3 3.5 9l3 1.7"></path>
+        <path d="M3.5 9h8"></path>
+        <path d="M17 21l3.5-6-3-1.7"></path>
+        <path d="M20.5 15h-8"></path>
+        <path d="M12 3h5l-1.5 3"></path>
+        <path d="M12 21H7l1.5-3"></path>
+      </symbol>
+      <symbol id="icon-jar" viewBox="0 0 24 24">
+        <path d="M9 3h6v3l2 2v11a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8l2-2V3Z"></path>
+        <path d="M9 3h6"></path>
+        <path d="M7 12h10"></path>
+      </symbol>
+      <symbol id="icon-gift" viewBox="0 0 24 24">
+        <rect x="3" y="8" width="18" height="12" rx="1"></rect>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="12" y1="8" x2="12" y2="20"></line>
+        <path d="M12 8c-1.2-3.2-5-3.2-5-1S9 8 12 8Z"></path>
+        <path d="M12 8c1.2-3.2 5-3.2 5-1S15 8 12 8Z"></path>
+      </symbol>
+      <symbol id="icon-package" viewBox="0 0 24 24">
+        <path d="M12 3 3 7.5V16.5L12 21l9-4.5V7.5L12 3Z"></path>
+        <path d="M3 7.5 12 12l9-4.5"></path>
+        <path d="M12 12v9"></path>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Promo strip -->
+  <div class="w-full bg-[var(--tinta)] text-center px-4 py-2">
+    <p class="text-[13px] font-bold text-white flex items-center justify-center gap-1.5 flex-wrap">
+      <svg class="icon icon-sm text-[var(--ambar)]"><use href="#icon-truck"></use></svg>
+      Despacho gratis sobre $25.000 &nbsp;•&nbsp;
+      <svg class="icon icon-sm text-[var(--ambar)]"><use href="#icon-recycle"></use></svg>
+      Recarga tu growler con <span class="text-[var(--ambar)]">15% OFF</span>
+    </p>
+  </div>
+
+  <!-- Header -->
+  <header class="w-full bg-white/90 backdrop-blur shadow-sm sticky top-0 z-50">
+    <div class="mx-auto max-w-[1280px] px-6 h-[70px] flex items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-2 font-display text-xl md:text-2xl tracking-tight text-[var(--tinta)]">
+        <svg class="icon icon-lg text-[var(--naranja)]"><use href="#icon-mug"></use></svg>
+        Craft <span class="text-[var(--naranja)]">&</span> Beer
+      </a>
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-bold">
+        <a class="hover:text-[var(--naranja)] transition-colors" href="index.html">Inicio</a>
+        <a class="text-[var(--naranja)]" href="productos.html">Productos</a>
+        <a class="hover:text-[var(--naranja)] transition-colors" href="index.html#club">Club Cervecero</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="cuenta.html" class="hidden md:flex items-center gap-2 text-sm font-bold hover:text-[var(--naranja)] transition-colors">
+          <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="20"><path d="M20 21a8 8 0 1 0-16 0"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          Mi cuenta
+        </a>
+        <button id="btnCarrito" aria-label="Carrito" class="relative w-9 h-9 flex items-center justify-center rounded-full bg-[var(--crema)] hover:scale-105 transition-transform cursor-pointer">
+          <svg fill="none" height="18" stroke="var(--tinta)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="18"><path d="M6 2 4 6v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6l-2-4z"></path><path d="M4 6h16"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span id="contadorCarrito" class="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 rounded-full bg-[var(--naranja)] text-white text-[10px] font-bold flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-[1200px] px-6 py-14">
+    <div class="text-center mb-10">
+      <p class="font-display text-[var(--naranja)] text-lg mb-1">CRAFT & BEER</p>
+      <h1 class="font-display text-4xl text-[var(--tinta)] mb-3">Nuestro catálogo</h1>
+      <p class="text-[var(--tinta-suave)]">Botellas, growlers y packs para cada ocasión.</p>
+    </div>
+
+    <!-- Filtros -->
+    <div class="flex flex-wrap justify-center gap-2.5 mb-12">
+      <button class="filtro-btn bg-[var(--tinta)] text-white border-[var(--tinta)] border-2 rounded-full px-4 py-2 text-sm font-bold transition-colors cursor-pointer" data-categoria="todos">Todos</button>
+      <button class="filtro-btn bg-white border-2 border-[var(--tinta)]/15 rounded-full px-4 py-2 text-sm font-bold transition-colors cursor-pointer hover:border-[var(--tinta)]" data-categoria="ipa">IPA & Ales</button>
+      <button class="filtro-btn bg-white border-2 border-[var(--tinta)]/15 rounded-full px-4 py-2 text-sm font-bold transition-colors cursor-pointer hover:border-[var(--tinta)]" data-categoria="stout">Stout & Porter</button>
+      <button class="filtro-btn bg-white border-2 border-[var(--tinta)]/15 rounded-full px-4 py-2 text-sm font-bold transition-colors cursor-pointer hover:border-[var(--tinta)]" data-categoria="lager">Lager & Pilsner</button>
+      <button class="filtro-btn bg-white border-2 border-[var(--tinta)]/15 rounded-full px-4 py-2 text-sm font-bold transition-colors cursor-pointer hover:border-[var(--tinta)]" data-categoria="wheat">Wheat & Red Ale</button>
+      <button class="filtro-btn bg-white border-2 border-[var(--tinta)]/15 rounded-full px-4 py-2 text-sm font-bold transition-colors cursor-pointer hover:border-[var(--tinta)]" data-categoria="growlers">Growlers</button>
+      <button class="filtro-btn bg-white border-2 border-[var(--tinta)]/15 rounded-full px-4 py-2 text-sm font-bold transition-colors cursor-pointer hover:border-[var(--tinta)]" data-categoria="packs">Packs y Promos</button>
+    </div>
+
+    <!-- Grid de productos -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7" id="gridProductos">
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden" data-categoria="ipa">
+        <div class="h-44 overflow-hidden">
+          <img class="producto-img" src="https://images.unsplash.com/photo-1627627045944-a6171e94783a?auto=format&fit=crop&w=800&q=70" alt="IPA Tropical" loading="lazy">
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">IPA Tropical</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">Notas a mango y maracuyá, lúpulo bien presente. Botella 355 ml.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$3.990</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="IPA Tropical" data-precio="3990">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden" data-categoria="ipa">
+        <div class="h-44 overflow-hidden">
+          <img class="producto-img" src="https://images.unsplash.com/photo-1618183479302-1e0aa382c36b?auto=format&fit=crop&w=800&q=70" alt="Session IPA" loading="lazy">
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">Session IPA</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">Ligera y refrescante, ideal para tomar de a varias. Botella 355 ml.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$3.790</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="Session IPA" data-precio="3790">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden" data-categoria="stout">
+        <div class="h-44 overflow-hidden">
+          <img class="producto-img" src="https://images.unsplash.com/photo-1642997702017-8531db99dd77?auto=format&fit=crop&w=800&q=70" alt="Imperial Stout" loading="lazy">
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">Imperial Stout</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">Cuerpo denso, notas a chocolate y caramelo tostado. Botella 355 ml.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$4.490</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="Imperial Stout" data-precio="4490">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden" data-categoria="stout">
+        <div class="h-44 overflow-hidden">
+          <img class="producto-img" src="https://images.unsplash.com/photo-1642997702017-8531db99dd77?auto=format&fit=crop&w=800&q=70" alt="Porter de Café" loading="lazy">
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">Porter de Café</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">Tostado profundo con infusión de café de origen. Botella 355 ml.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$4.290</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="Porter de Café" data-precio="4290">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden" data-categoria="lager">
+        <div class="h-44 overflow-hidden">
+          <img class="producto-img" src="https://images.unsplash.com/photo-1618183479302-1e0aa382c36b?auto=format&fit=crop&w=800&q=70" alt="Golden Lager" loading="lazy">
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">Golden Lager</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">Dorada, suave y fácil de beber. Botella 355 ml.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$3.490</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="Golden Lager" data-precio="3490">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden" data-categoria="lager">
+        <div class="h-44 overflow-hidden">
+          <img class="producto-img" src="https://images.unsplash.com/photo-1618183479302-1e0aa382c36b?auto=format&fit=crop&w=800&q=70" alt="Pilsner Clásica" loading="lazy">
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">Pilsner Clásica</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">Amargor limpio y final crujiente. Botella 355 ml.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$3.490</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="Pilsner Clásica" data-precio="3490">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden" data-categoria="wheat">
+        <div class="h-44 overflow-hidden">
+          <img class="producto-img" src="https://images.unsplash.com/photo-1711335792535-acacf1727eab?auto=format&fit=crop&w=800&q=70" alt="Wheat Ale de Naranja" loading="lazy">
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">Wheat Ale de Naranja</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">Trigo con un toque cítrico, refrescante y ligera. Botella 355 ml.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$3.990</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="Wheat Ale de Naranja" data-precio="3990">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden" data-categoria="wheat">
+        <div class="h-44 overflow-hidden">
+          <img class="producto-img" src="https://images.unsplash.com/photo-1711335792535-acacf1727eab?auto=format&fit=crop&w=800&q=70" alt="Red Ale Ámbar" loading="lazy">
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">Red Ale Ámbar</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">Maltosa y equilibrada, con notas a caramelo. Botella 355 ml.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$3.890</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="Red Ale Ámbar" data-precio="3890">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden" data-categoria="growlers">
+        <div class="h-44 bg-[#CFF1EA] flex items-center justify-center">
+          <svg class="icon icon-xl text-[var(--teal)]"><use href="#icon-jar"></use></svg>
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">Growler IPA Tropical 1L</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">Envase recargable, ideal para compartir. 1 litro.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$9.990</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="Growler IPA Tropical 1L" data-precio="9990">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden" data-categoria="growlers">
+        <div class="h-44 bg-[#CFF1EA] flex items-center justify-center">
+          <svg class="icon icon-xl text-[var(--teal)]"><use href="#icon-jar"></use></svg>
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">Growler Imperial Stout 1,9L</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">Formato grande para juntas largas. 1,9 litros.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$16.990</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="Growler Imperial Stout 1,9L" data-precio="16990">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden border-2 border-[var(--ambar)]" data-categoria="packs">
+        <div class="h-44 bg-[#FFF0CF] flex items-center justify-center relative">
+          <svg class="icon icon-xl text-[var(--naranja)]"><use href="#icon-gift"></use></svg>
+          <span class="absolute top-3 right-3 bg-[var(--naranja)] text-white text-[10px] font-black uppercase px-2 py-1 rounded-full">Más vendido</span>
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">Pack Degustación (6 estilos)</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">Una botella de cada estilo: IPA, Stout, Lager, Wheat y más.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$21.990</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="Pack Degustación (6 estilos)" data-precio="21990">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card bg-white rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all overflow-hidden" data-categoria="packs">
+        <div class="h-44 bg-gradient-to-br from-[var(--purpura)]/20 to-[var(--naranja)]/20 flex items-center justify-center">
+          <svg class="icon icon-xl text-[var(--purpura)]"><use href="#icon-package"></use></svg>
+        </div>
+        <div class="p-5">
+          <h2 class="font-black text-lg mb-1">Suscripción Club Cervecero</h2>
+          <p class="text-sm text-[var(--tinta-suave)] mb-4 min-h-[40px]">6 cervezas sorpresa cada mes + envío gratis. Cancela cuando quieras.</p>
+          <div class="flex items-center justify-between">
+            <strong class="font-display text-lg text-[var(--naranja)]">$24.990/mes</strong>
+            <button class="btn-agregar bg-[var(--naranja)] hover:bg-[var(--tinta)] text-white text-sm font-bold px-4 py-2 rounded-full transition-colors cursor-pointer" data-nombre="Suscripción Club Cervecero" data-precio="24990">+ Agregar</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="text-center mt-14">
+      <a href="index.html" class="inline-flex items-center gap-2 rounded-full border-2 border-[var(--tinta)] px-6 py-2.5 font-bold hover:bg-[var(--tinta)] hover:text-white transition-colors">
+        ← Volver al inicio
+      </a>
+    </div>
+  </main>
+
+  <footer class="bg-[var(--tinta)] py-8 text-center">
+    <p class="text-white/40 text-xs">Craft & Beer® — Bebe con responsabilidad.</p>
+  </footer>
+
+  <!-- Panel del carrito -->
+  <div id="carritoPanel" class="fixed top-0 right-0 w-full md:w-[400px] h-full bg-white shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 p-6 flex flex-col">
+    <div class="flex justify-between items-center border-b border-black/5 pb-4 mb-4">
+      <h2 class="font-display text-2xl text-[var(--tinta)]">Tu pedido</h2>
+      <button id="cerrarCarrito" class="text-gray-400 hover:text-[var(--naranja)] font-bold text-xl cursor-pointer">✕</button>
+    </div>
+    <div class="flex-grow overflow-y-auto">
+      <div id="contenidoCarrito"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
