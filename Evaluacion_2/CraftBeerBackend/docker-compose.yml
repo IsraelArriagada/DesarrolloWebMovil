@@ -1,0 +1,48 @@
+# Despliegue reproducible: docker compose up --build   (requiere .env, ver .env.example)
+# Solo el API Gateway publica puerto (5000). Servicios y Oracle quedan en la red interna.
+x-common: &common
+  env_file: .env
+  restart: on-failure
+  environment: &commonenv
+    ORACLE_HOST: oracle
+    INVENTORY_URL: http://inventory:8080
+    CLIENTS_URL: http://clients:8080
+    ORDERS_URL: http://orders:8080
+    DELIVERY_URL: http://delivery:8080
+    NOTIFICATIONS_URL: http://notifications:8080
+  depends_on:
+    oracle: { condition: service_healthy }
+
+services:
+  oracle:
+    image: gvenzl/oracle-xe:21-slim
+    env_file: .env
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_PWD}
+    volumes:
+      - ./db/init:/container-entrypoint-initdb.d:ro
+      - ./db/schemas:/opt/oracle/schemas:ro
+      - oradata:/opt/oracle/oradata
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 15s
+      timeout: 10s
+      retries: 30
+      start_period: 120s
+
+  clients:       { <<: *common, build: { context: ., dockerfile: ClientsService/Dockerfile } }
+  inventory:     { <<: *common, build: { context: ., dockerfile: InventoryService/Dockerfile } }
+  orders:        { <<: *common, build: { context: ., dockerfile: OrdersService/Dockerfile } }
+  payments:      { <<: *common, build: { context: ., dockerfile: PaymentsService/Dockerfile } }
+  delivery:      { <<: *common, build: { context: ., dockerfile: DeliveryService/Dockerfile } }
+  notifications: { <<: *common, build: { context: ., dockerfile: NotificationsService/Dockerfile } }
+  graphql:       { <<: *common, build: { context: ., dockerfile: GraphQLGateway/Dockerfile } }
+
+  gateway:
+    build: { context: ., dockerfile: ApiGateway/Dockerfile }
+    env_file: .env
+    ports: ["5000:8080"]
+    depends_on: [clients, inventory, orders, payments, delivery, graphql]
+
+volumes:
+  oradata:

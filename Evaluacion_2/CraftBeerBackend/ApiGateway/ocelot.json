@@ -1,0 +1,679 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/v1/products",
+      "DownstreamPathTemplate": "/products",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "inventory",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {},
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/products/{id}",
+      "DownstreamPathTemplate": "/products/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "inventory",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {},
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/auth/login",
+      "DownstreamPathTemplate": "/auth/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "clients",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {},
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1m",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/clients",
+      "DownstreamPathTemplate": "/clients",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "clients",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {},
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1m",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/payments/webhook",
+      "DownstreamPathTemplate": "/payments/webhook",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "payments",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {},
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/products",
+      "DownstreamPathTemplate": "/products",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "inventory",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "role": "ADMIN"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/products/{id}",
+      "DownstreamPathTemplate": "/products/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "inventory",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "PUT"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "role": "ADMIN"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/products/{id}/availability",
+      "DownstreamPathTemplate": "/products/{id}/availability",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "inventory",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "PATCH"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "role": "ADMIN"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/clients/me",
+      "DownstreamPathTemplate": "/clients/me",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "clients",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "Priority": 10,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/clients/{id}",
+      "DownstreamPathTemplate": "/clients/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "clients",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "GET",
+        "PUT"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/orders",
+      "DownstreamPathTemplate": "/orders",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "orders",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/orders/me",
+      "DownstreamPathTemplate": "/orders/me",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "orders",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "Priority": 10,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/orders/{id}",
+      "DownstreamPathTemplate": "/orders/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "orders",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/orders/{id}/cancel",
+      "DownstreamPathTemplate": "/orders/{id}/cancel",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "orders",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "PATCH"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/payments",
+      "DownstreamPathTemplate": "/payments",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "payments",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/receipts/{orderId}",
+      "DownstreamPathTemplate": "/receipts/{orderId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "payments",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/receipts/{orderId}/resend",
+      "DownstreamPathTemplate": "/receipts/{orderId}/resend",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "payments",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/reports/sales",
+      "DownstreamPathTemplate": "/reports/sales",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "payments",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/dispatch-orders",
+      "DownstreamPathTemplate": "/dispatch-orders",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "delivery",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/dispatch-orders/{id}/status",
+      "DownstreamPathTemplate": "/dispatch-orders/{id}/status",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "delivery",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "PATCH"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/api/v1/graphql",
+      "DownstreamPathTemplate": "/graphql",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "graphql",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [
+        "POST"
+      ],
+      "Priority": 0,
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Role": "Claims[role] > value"
+      },
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "ClientWhitelist": [],
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 10
+      },
+      "QoSOptions": {
+        "TimeoutValue": 8000
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000",
+    "RateLimitOptions": {
+      "QuotaExceededMessage": "{\"error\":\"Demasiadas solicitudes\"}",
+      "HttpStatusCode": 429
+    }
+  }
+}

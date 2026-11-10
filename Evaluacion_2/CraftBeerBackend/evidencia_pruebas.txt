@@ -1,0 +1,34 @@
+[PASS] Registro mayor de edad -> 201
+[PASS] Registro menor de edad -> 422
+[PASS] Correo duplicado -> 409
+[PASS] Login OK -> 200
+[PASS] Sin token -> 401
+[PASS] Spoof X-User-Role no eleva privilegios -> 403
+[PASS] Acceso directo a servicio rechazado (403 o inalcanzable) (resp=0)
+[PASS] Catálogo público -> 200
+[PASS] Crear pedido -> 201 y total = 2*3990 ({'id': 5, 'referencia': 'PED-36C919715502', 'subtotal': 7980, 'costoEnvio': 0, 'total': 7980, 'estado': 'PENDIENTE_PAGO'})
+[PASS] Ownership: otro cliente -> 404
+[PASS] Dueño ve su pedido -> 200
+[PASS] Cantidad excesiva -> 400
+[PASS] Sin stock -> 409
+[PASS] Webhook monto distinto -> 422
+[PASS] Webhook firma inválida -> 401
+[PASS] Webhook válido -> confirmado
+[PASS] Pago duplicado idempotente (no doble cobro)
+[PASS] Boleta emitida
+[PASS] Boleta ajena -> 404
+[PASS] Reserva descuenta stock
+[PASS] Anular pedido -> 200
+[PASS] Anulación recupera stock
+[PASS] GraphQL resumenPedido agrega Orders+Inventory ({'data': {'resumenPedido': {'referencia': 'PED-36C919715502', 'total': 7980, 'items': [{'cantidad': 2, 'producto': {'nombre': 'IPA Tropical 355ml'}}]}}})
+[PASS] GraphQL: campo idCliente denegado a CLIENTE
+[PASS] GraphQL: pedido ajeno -> null
+[PASS] GraphQL sin token -> 401
+[PASS] GraphQL rechaza consulta de costo excesivo
+[PASS] GraphQL limita tamaño de página
+[PASS] CLIENTE no accede a despacho -> 403
+[PASS] CLIENTE no crea productos -> 403
+[PASS] DESPACHO ve cola
+[PASS] Entrega sin verificar edad -> 422
+[PASS] Entrega con edad verificada -> 200
+RESULTADO: 33/33 pruebas OK  (2026-11-09T23:37:57)
