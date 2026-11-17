@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de la tienda — Craft & Beer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@tailwindcss/browser@4.3.3/dist/index.global.js" crossorigin="anonymous"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --font-display: 'Fredoka', system-ui, sans-serif;
+      --ambar: #FFB100; --naranja: #FF6B4A; --teal: #1FAE93; --purpura: #8B4FE3;
+      --tinta: #2B1B12; --tinta-suave: #7A6A5D; --crema: #FFF8EA;
+    }
+    body { background: var(--crema); color: var(--tinta); font-family: 'Nunito', system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <header class="bg-[var(--tinta)] text-white">
+    <div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+      <p class="font-display text-xl">Craft <span class="text-[var(--naranja)]">&</span> Beer · <span class="text-white/60">Panel</span></p>
+      <div class="flex items-center gap-4">
+        <p id="estadoServicios" class="text-xs font-bold"></p>
+        <p id="rolActual" class="text-xs font-bold text-[var(--ambar)]"></p>
+        <button id="btnSalir" class="text-xs font-bold text-white/60 hover:text-white cursor-pointer">Salir</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ingreso de API key -->
+  <div id="panelKey" class="hidden fixed inset-0 z-50 bg-[var(--tinta)]/70 flex items-center justify-center p-6">
+    <form id="formKey" class="bg-white rounded-3xl p-8 w-full max-w-sm space-y-4">
+      <h2 class="font-display text-2xl">Acceso al panel</h2>
+      <p class="text-sm text-[var(--tinta-suave)]">Ingresa tu API key de tienda o de admin.</p>
+      <input id="inputKey" type="password" autocomplete="off" placeholder="X-API-Key" class="w-full rounded-xl border-2 border-black/10 px-4 py-2 outline-none focus:border-[var(--naranja)]">
+      <button class="w-full rounded-full bg-[var(--naranja)] text-white font-bold py-2.5 cursor-pointer">Entrar</button>
+      <p id="msgKey" class="text-sm font-bold text-red-500"></p>
+    </form>
+  </div>
+
+  <main class="mx-auto max-w-[1200px] px-6 py-10 space-y-10">
+    <!-- Resumen -->
+    <section id="resumen" class="grid gap-4 grid-cols-2 md:grid-cols-4"></section>
+
+    <div class="grid gap-8 lg:grid-cols-[1.3fr_1fr]">
+      <!-- Catálogo -->
+      <section class="bg-white rounded-2xl shadow-sm p-6">
+        <h2 class="font-display text-2xl mb-4">Stock de cervezas</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="text-left text-[var(--tinta-suave)]">
+              <tr><th class="py-2">Cerveza</th><th>Estilo</th><th class="text-right">Precio</th><th class="text-right">Stock</th></tr>
+            </thead>
+            <tbody id="tablaCervezas"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Nuevo pedido -->
+      <section class="bg-white rounded-2xl shadow-sm p-6">
+        <h2 class="font-display text-2xl mb-4">Nuevo pedido</h2>
+        <form id="formPedido" class="space-y-3">
+          <input name="cliente" placeholder="Nombre del cliente" class="w-full rounded-xl border-2 border-black/10 px-4 py-2 outline-none focus:border-[var(--naranja)]">
+          <input name="direccion" placeholder="Dirección de despacho" class="w-full rounded-xl border-2 border-black/10 px-4 py-2 outline-none focus:border-[var(--naranja)]">
+          <div class="flex gap-2">
+            <select id="selCerveza" class="flex-1 rounded-xl border-2 border-black/10 px-3 py-2 bg-white"></select>
+            <input id="cantCerveza" type="number" min="1" max="48" value="1" class="w-20 rounded-xl border-2 border-black/10 px-3 py-2">
+            <button type="button" id="btnAgregarItem" class="rounded-xl bg-[var(--crema)] font-bold px-3 cursor-pointer">+</button>
+          </div>
+          <ul id="itemsPedido" class="text-sm space-y-1"></ul>
+          <button class="w-full rounded-full bg-[var(--naranja)] text-white font-bold py-2.5 hover:bg-[var(--tinta)] transition-colors cursor-pointer">Crear pedido</button>
+          <p id="msgPedido" class="text-sm font-bold"></p>
+        </form>
+      </section>
+    </div>
+
+    <!-- Pedidos -->
+    <section class="bg-white rounded-2xl shadow-sm p-6">
+      <h2 class="font-display text-2xl mb-4">Pedidos</h2>
+      <div id="listaPedidos" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
