@@ -1,0 +1,20 @@
+{
+  "name": "craftbeer-graphql",
+  "version": "1.0.0",
+  "description": "Semana 5 - API GraphQL del catálogo de Craft & Beer con MongoDB",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node seed.js"
+  },
+  "author": "Israel Arriagada",
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/server": "^5.5.2",
+    "dotenv": "^18.0.10",
+    "graphql": "^16.15.0",
+    "mongoose": "^9.12.2"
+  }
+}

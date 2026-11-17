@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000" font-family="Comic Sans MS, Chalkboard SE, Segoe Print, sans-serif">
+  <rect width="1400" height="1000" fill="#FFFDF7"/>
+  <!-- cuadrícula tipo cuaderno -->
+  <defs>
+    <pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <path d="M25 0H0V25" fill="none" stroke="#E8E2D4" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="1000" fill="url(#grid)"/>
+
+  <text x="40" y="55" font-size="30" fill="#2B1B12" font-weight="bold">Craft &amp; Beer — Boceto del inicio</text>
+  <text x="40" y="85" font-size="17" fill="#7A6A5D">Wireframe baja fidelidad · escritorio (izq.) y celular (der.)</text>
+
+  <g fill="none" stroke="#2B1B12" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- ===== Escritorio ===== -->
+    <rect x="40" y="110" width="900" height="850" rx="10"/>
+    <!-- franja promo -->
+    <rect x="40" y="110" width="900" height="30" fill="#2B1B12"/>
+    <!-- header -->
+    <line x1="40" y1="200" x2="940" y2="200"/>
+    <circle cx="85" cy="170" r="16"/>
+    <line x1="110" y1="170" x2="230" y2="170" stroke-width="6"/>
+    <line x1="460" y1="170" x2="510" y2="170"/>
+    <line x1="530" y1="170" x2="600" y2="170"/>
+    <line x1="620" y1="170" x2="720" y2="170"/>
+    <circle cx="900" cy="170" r="15"/>
+    <!-- hero -->
+    <rect x="60" y="220" width="860" height="260" rx="14" fill="#FFE29A" fill-opacity=".55"/>
+    <line x1="100" y1="290" x2="420" y2="290" stroke-width="10"/>
+    <line x1="100" y1="325" x2="380" y2="325" stroke-width="10"/>
+    <line x1="100" y1="365" x2="440" y2="365"/>
+    <line x1="100" y1="385" x2="400" y2="385"/>
+    <rect x="100" y="415" width="140" height="40" rx="20" fill="#2B1B12"/>
+    <rect x="255" y="415" width="140" height="40" rx="20"/>
+    <!-- jarra -->
+    <path d="M640 280h130v150a20 20 0 0 1-20 20h-90a20 20 0 0 1-20-20z"/>
+    <path d="M770 310h30a20 20 0 0 1 20 20v40a20 20 0 0 1-20 20h-30"/>
+    <circle cx="690" cy="340" r="6"/><circle cx="720" cy="380" r="4"/><circle cx="700" cy="410" r="5"/>
+    <!-- beneficios -->
+    <rect x="60" y="505" width="270" height="120" rx="12"/>
+    <rect x="355" y="505" width="270" height="120" rx="12"/>
+    <rect x="650" y="505" width="270" height="120" rx="12"/>
+    <circle cx="100" cy="545" r="18"/><circle cx="395" cy="545" r="18"/><circle cx="690" cy="545" r="18"/>
+    <line x1="85" y1="590" x2="300" y2="590"/><line x1="380" y1="590" x2="595" y2="590"/><line x1="675" y1="590" x2="890" y2="590"/>
+    <!-- destacados -->
+    <line x1="60" y1="665" x2="300" y2="665" stroke-width="7"/>
+    <rect x="60" y="690" width="270" height="200" rx="12"/>
+    <rect x="355" y="690" width="270" height="200" rx="12"/>
+    <rect x="650" y="690" width="270" height="200" rx="12"/>
+    <path d="M60 790h270M60 690l270 100M330 690 60 790" stroke-width="1.5"/>
+    <path d="M355 790h270M355 690l270 100M625 690 355 790" stroke-width="1.5"/>
+    <path d="M650 790h270M650 690l270 100M920 690 650 790" stroke-width="1.5"/>
+    <line x1="80" y1="820" x2="220" y2="820"/><line x1="375" y1="820" x2="515" y2="820"/><line x1="670" y1="820" x2="810" y2="820"/>
+    <rect x="230" y="845" width="80" height="28" rx="14" fill="#FF6B4A"/>
+    <rect x="525" y="845" width="80" height="28" rx="14" fill="#FF6B4A"/>
+    <rect x="820" y="845" width="80" height="28" rx="14" fill="#FF6B4A"/>
+    <!-- footer -->
+    <rect x="40" y="910" width="900" height="50" fill="#2B1B12"/>
+
+    <!-- ===== Celular ===== -->
+    <rect x="1030" y="110" width="320" height="640" rx="36"/>
+    <rect x="1050" y="150" width="280" height="560" rx="6"/>
+    <line x1="1050" y1="195" x2="1330" y2="195"/>
+    <circle cx="1075" cy="173" r="11"/>
+    <line x1="1092" y1="173" x2="1170" y2="173" stroke-width="5"/>
+    <path d="M1290 165h25M1290 173h25M1290 181h25"/>
+    <rect x="1062" y="208" width="256" height="170" rx="10" fill="#FFE29A" fill-opacity=".55"/>
+    <line x1="1080" y1="250" x2="1260" y2="250" stroke-width="8"/>
+    <line x1="1080" y1="278" x2="1230" y2="278" stroke-width="8"/>
+    <line x1="1080" y1="310" x2="1270" y2="310"/>
+    <rect x="1080" y="333" width="110" height="32" rx="16" fill="#2B1B12"/>
+    <rect x="1062" y="392" width="256" height="60" rx="10"/>
+    <rect x="1062" y="462" width="256" height="60" rx="10"/>
+    <rect x="1062" y="532" width="256" height="160" rx="10"/>
+    <path d="M1062 612h256M1062 532l256 80M1318 532l-256 80" stroke-width="1.5"/>
+  </g>
+
+  <!-- notas a mano -->
+  <g font-size="17" fill="#FF6B4A">
+    <text x="440" y="250">fondo degradado ámbar → naranjo</text>
+    <text x="440" y="270">+ burbujas animadas</text>
+    <text x="560" y="660">se arman desde el arreglo (PHP)</text>
+    <text x="1030" y="790">menú ☰ en vez de links</text>
+    <text x="1030" y="815">tarjetas en 1 columna</text>
+    <text x="1030" y="840">carrito = panel a pantalla completa</text>
+  </g>
+  <g fill="none" stroke="#FF6B4A" stroke-width="2">
+    <path d="M435 245q-40 10-60 40"/>
+    <path d="M1228 772C1395 700 1395 250 1322 182"/>
+  </g>
+
+  <!-- paleta -->
+  <g font-size="14" fill="#2B1B12">
+    <text x="1030" y="890" font-weight="bold" font-size="17">Paleta</text>
+    <rect x="1030" y="905" width="34" height="34" rx="6" fill="#FFB100"/>
+    <rect x="1072" y="905" width="34" height="34" rx="6" fill="#FF6B4A"/>
+    <rect x="1114" y="905" width="34" height="34" rx="6" fill="#1FAE93"/>
+    <rect x="1156" y="905" width="34" height="34" rx="6" fill="#8B4FE3"/>
+    <rect x="1198" y="905" width="34" height="34" rx="6" fill="#2B1B12"/>
+    <rect x="1240" y="905" width="34" height="34" rx="6" fill="#FFF8EA" stroke="#2B1B12"/>
+    <text x="1030" y="960">ámbar · naranjo · teal · púrpura · tinta · crema</text>
+  </g>
+</svg>
