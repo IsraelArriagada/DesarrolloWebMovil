@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+hvac
+pydantic[email]
