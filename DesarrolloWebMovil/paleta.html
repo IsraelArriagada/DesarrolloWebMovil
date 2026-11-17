@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paleta de colores — Craft & Beer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="paleta_colores.css">
+  <style>
+    body { margin: 0; background: var(--crema); color: var(--tinta); font-family: var(--fuente-texto); }
+    main { max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem; }
+    h1, h2 { font-family: var(--fuente-titulos); }
+    h1 { font-size: 2.5rem; margin: 0 0 .25rem; }
+    .grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
+    .muestra { border-radius: var(--radio-tarjeta); overflow: hidden; background: var(--blanco); box-shadow: var(--sombra); }
+    .muestra .color { height: 110px; }
+    .muestra .info { padding: .75rem 1rem; font-size: .9rem; }
+    .muestra code { color: var(--tinta-suave); }
+    .fila { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1.5rem; }
+    img { max-width: 100%; border-radius: var(--radio-tarjeta); box-shadow: var(--sombra); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Paleta Craft & Beer</h1>
+    <p class="texto-suave">Semana 4 · colores sacados de la cerveza: dorado, cobrizo, malta tostada y espuma.</p>
+
+    <h2>Colores</h2>
+    <div class="grilla" id="grilla"></div>
+
+    <h2>Tipografía</h2>
+    <p style="font-family: var(--fuente-titulos); font-size: 2rem; margin: 0">Fredoka — títulos</p>
+    <p style="font-size: 1.1rem">Nunito — textos y descripciones. Lotes chicos, recetas propias y growlers recargables.</p>
+
+    <h2>Componentes</h2>
+    <div class="fila">
+      <button class="btn-principal">+ Agregar</button>
+      <button class="btn-secundario">Ver catálogo</button>
+      <span class="bg-purpura" style="padding:.3rem .8rem;border-radius:999px;font-weight:800;font-size:.8rem">CLUB</span>
+      <span class="bg-teal" style="padding:.3rem .8rem;border-radius:999px;font-weight:800;font-size:.8rem">RECARGABLE</span>
+    </div>
+    <div class="tarjeta" style="max-width:300px;margin-bottom:3rem">
+      <strong>IPA Tropical</strong>
+      <p class="texto-suave" style="margin:.3rem 0 1rem">Notas a mango y maracuyá. Botella 355 ml.</p>
+      <strong class="texto-naranja" style="font-family:var(--fuente-titulos);font-size:1.3rem">$3.990</strong>
+    </div>
+
+    <h2>Boceto</h2>
+    <img src="boceto.png" alt="Boceto del inicio de Craft & Beer en escritorio y celular">
+  </main>
+
+  <script>
+    // Las muestras se leen directo de las variables CSS, así si cambio
+    // un color en paleta_colores.css se actualiza solo aquí.
+    const nombres = ['ambar', 'ambar-suave', 'naranja', 'tinta', 'tinta-suave', 'crema', 'teal', 'teal-suave', 'purpura', 'purpura-suave', 'error'];
+    const estilos = getComputedStyle(document.documentElement);
+    const grilla = document.getElementById('grilla');
+
+    nombres.forEach((nombre) => {
+      const valor = estilos.getPropertyValue('--' + nombre).trim();
+      grilla.insertAdjacentHTML('beforeend', `
+        <div class="muestra">
+          <div class="color" style="background:${valor}"></div>
+          <div class="info"><strong>--${nombre}</strong><br><code>${valor}</code></div>
+        </div>`);
+    });
+  </script>
+</body>
+</html>
