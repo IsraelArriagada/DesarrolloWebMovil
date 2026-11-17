@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi cuenta — Craft & Beer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@tailwindcss/browser@4.3.3/dist/index.global.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <style type="text/tailwindcss">
+    @theme {
+      --font-display: 'Fredoka', system-ui, sans-serif;
+      --ambar: #FFB100; --ambar-suave: #FFE29A; --naranja: #FF6B4A; --teal: #1FAE93; --purpura: #8B4FE3;
+      --tinta: #2B1B12; --tinta-suave: #7A6A5D; --crema: #FFF8EA;
+    }
+    body { background-color: var(--crema); color: var(--tinta); font-family: 'Nunito', system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <header id="header"></header>
+
+  <main class="min-h-[75vh] px-6 py-14">
+
+    <!-- Sin sesión: login / registro -->
+    <section id="vistaAcceso" class="hidden w-full max-w-[440px] mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-10">
+      <p class="text-center font-display text-[var(--naranja)] text-sm uppercase tracking-wide mb-1">Club Cervecero</p>
+      <h1 class="text-center font-display text-3xl mb-6">Tu cuenta</h1>
+
+      <div class="grid grid-cols-2 gap-2 p-1 bg-[var(--crema)] rounded-full mb-8">
+        <button id="tabLogin" class="rounded-full py-2 font-bold text-sm cursor-pointer tab-activa">Ingresar</button>
+        <button id="tabRegistro" class="rounded-full py-2 font-bold text-sm cursor-pointer">Crear cuenta</button>
+      </div>
+
+      <form id="formLogin" class="space-y-5" novalidate>
+        <div>
+          <label for="loginCorreo" class="block text-sm font-bold mb-1.5">Correo</label>
+          <input id="loginCorreo" type="email" autocomplete="email" class="w-full rounded-xl border-2 border-black/10 px-4 py-2.5 outline-none focus:border-[var(--naranja)]">
+        </div>
+        <div>
+          <label for="loginPass" class="block text-sm font-bold mb-1.5">Contraseña</label>
+          <input id="loginPass" type="password" autocomplete="current-password" class="w-full rounded-xl border-2 border-black/10 px-4 py-2.5 outline-none focus:border-[var(--naranja)]">
+        </div>
+        <button class="w-full rounded-full bg-[var(--naranja)] text-white font-bold py-3 hover:bg-[var(--tinta)] transition-colors cursor-pointer">Iniciar sesión</button>
+      </form>
+
+      <form id="formRegistro" class="space-y-5 hidden" novalidate>
+        <div>
+          <label for="regNombre" class="block text-sm font-bold mb-1.5">Nombre</label>
+          <input id="regNombre" autocomplete="name" class="w-full rounded-xl border-2 border-black/10 px-4 py-2.5 outline-none focus:border-[var(--naranja)]">
+        </div>
+        <div>
+          <label for="regCorreo" class="block text-sm font-bold mb-1.5">Correo</label>
+          <input id="regCorreo" type="email" autocomplete="email" class="w-full rounded-xl border-2 border-black/10 px-4 py-2.5 outline-none focus:border-[var(--naranja)]">
+        </div>
+        <div>
+          <label for="regPass" class="block text-sm font-bold mb-1.5">Contraseña <span class="font-normal text-[var(--tinta-suave)]">(mínimo 8)</span></label>
+          <input id="regPass" type="password" autocomplete="new-password" class="w-full rounded-xl border-2 border-black/10 px-4 py-2.5 outline-none focus:border-[var(--naranja)]">
+        </div>
+        <label class="flex items-center gap-2 text-sm font-bold">
+          <input id="regEdad" type="checkbox" class="w-4 h-4 accent-[var(--naranja)]"> Soy mayor de 18 años
+        </label>
+        <button class="w-full rounded-full bg-[var(--naranja)] text-white font-bold py-3 hover:bg-[var(--tinta)] transition-colors cursor-pointer">Crear cuenta</button>
+      </form>
+
+      <p id="msgAcceso" class="mt-4 text-center font-bold text-sm"></p>
+    </section>
+
+    <!-- Con sesión: perfil y pedidos -->
+    <section id="vistaPerfil" class="hidden max-w-[900px] mx-auto">
+      <div class="bg-white rounded-3xl shadow-sm p-8 flex flex-wrap items-center justify-between gap-4 mb-8">
+        <div>
+          <p class="font-display text-[var(--naranja)]">Mi cuenta</p>
+          <h1 id="perfilNombre" class="font-display text-3xl"></h1>
+          <p id="perfilCorreo" class="text-[var(--tinta-suave)]"></p>
+        </div>
+        <button id="btnSalir" class="rounded-full border-2 border-[var(--tinta)] px-5 py-2 font-bold hover:bg-[var(--tinta)] hover:text-white transition-colors cursor-pointer">Cerrar sesión</button>
+      </div>
+
+      <h2 class="font-display text-2xl mb-4">Mis pedidos</h2>
+      <div id="misPedidos" class="grid gap-4 md:grid-cols-2"></div>
+    </section>
+  </main>
+
+  <footer class="bg-[var(--tinta)] py-8 text-center">
+    <p class="text-white/40 text-xs">Craft & Beer® — Bebe con responsabilidad.</p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/cuenta.js"></script>
+</body>
+</html>
